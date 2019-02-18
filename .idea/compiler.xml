@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pygcommon" />
+        <module name="pygdao" />
+        <module name="pygmanagerinterface" />
+        <module name="pygmanagerservice" />
+        <module name="pygmanagerweb" />
+        <module name="pygpojo" />
+        <module name="pygshopweb" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="pygcommon" target="1.7" />
+      <module name="pygdao" target="1.7" />
+      <module name="pyginterface" target="1.7" />
+      <module name="pygmanager" target="1.7" />
+      <module name="pygmanagerinterface" target="1.7" />
+      <module name="pygmanagerservice" target="1.7" />
+      <module name="pygmanagerweb" target="1.7" />
+      <module name="pygparent" target="1.7" />
+      <module name="pygpojo" target="1.7" />
+      <module name="pygshopweb" target="1.7" />
+      <module name="sdffff" target="1.5" />
+      <module name="sssss" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

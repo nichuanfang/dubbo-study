@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pygcommon/pygcommon.iml" filepath="$PROJECT_DIR$/pygcommon/pygcommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygdao/pygdao.iml" filepath="$PROJECT_DIR$/pygdao/pygdao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygmanager/pygmanager.iml" filepath="$PROJECT_DIR$/pygmanager/pygmanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygmanager/pyg-manager-interface/pygmanagerinterface.iml" filepath="$PROJECT_DIR$/pygmanager/pyg-manager-interface/pygmanagerinterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygmanager/pyg-manager-service/pygmanagerservice.iml" filepath="$PROJECT_DIR$/pygmanager/pyg-manager-service/pygmanagerservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygmanagerweb/pygmanagerweb.iml" filepath="$PROJECT_DIR$/pygmanagerweb/pygmanagerweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygparent/pygparent.iml" filepath="$PROJECT_DIR$/pygparent/pygparent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygpojo/pygpojo.iml" filepath="$PROJECT_DIR$/pygpojo/pygpojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pygshopweb/pygshopweb.iml" filepath="$PROJECT_DIR$/pygshopweb/pygshopweb.iml" />
+    </modules>
+  </component>
+</project>
