@@ -20,16 +20,17 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd
     http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <context:component-scan base-package="com.pygmanager.service"/>
-    <!--使用dubbo协议在20881端口暴露服务-->
-    <dubbo:protocol name="dubbo" port="20881"/>
-    <!--生产者应用信息-->
-    <dubbo:application name="sellservice"/>
-    <!--使用zookeeper注册中心暴露服务地址-->
-    <dubbo:registry address="zookeeper://192.168.224.128:2181"/>
-    <!--使用接口声明需要暴露的服务-->
-    <!--<bean class="com.pygmanager.service.UserServiceImpl" id="userService"/>
-    <dubbo:service interface="com.pygmanager.service.Userservice" ref="userService"/>-->
-    <!--使用注解的方式声明需要暴露的服务-->
-    <dubbo:annotation package="com.pygmanager.service"/>
+
+    <context:component-scan base-package="com.ncf.controller"/>
+    <mvc:annotation-driven/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <mvc:resources mapping="/static/images/*" location="/static/images/"/>
+    <dubbo:application name="dubbo_consumer"/>
+    <!-- 使用zookeeper注册中心暴露发现服务地址 -->
+    <dubbo:registry address="zookeeper://192.168.224.128:2181" />
+    <!-- 使用注解引入远程服务 -->
+    <dubbo:annotation package="com.ncf.controller"/>
 </beans>
