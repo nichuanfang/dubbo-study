@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 @Controller
 public class ServeletController {
-    @Reference(check = false)
+    @Reference(check = false,retries = 2)
     Userservice userservice;
     @RequestMapping("/test")
     void test(){

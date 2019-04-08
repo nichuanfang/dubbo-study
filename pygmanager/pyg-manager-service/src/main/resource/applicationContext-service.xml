@@ -7,26 +7,26 @@
        xmlns:jms="http://www.springframework.org/schema/jms"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd
-	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd
 	http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
-	http://www.springframework.org/schema/mvc    
+	http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc.xsd
     http://code.alibabatech.com/schema/dubbo
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <context:component-scan base-package="com.pygmanager.service"/>
+    <context:component-scan base-package="com.pygmanager.service"/>`
     <!--使用dubbo协议在20881端口暴露服务-->
     <dubbo:protocol name="dubbo" port="20881"/>
     <!--生产者应用信息-->
     <dubbo:application name="sellservice"/>
     <!--使用zookeeper注册中心暴露服务地址-->
-    <dubbo:registry address="zookeeper://192.168.224.128:2181"/>
+    <dubbo:registry address="zookeeper://192.168.0.123:2181"/>
     <!--使用接口声明需要暴露的服务-->
     <!--<bean class="com.pygmanager.service.UserServiceImpl" id="userService"/>
     <dubbo:service interface="com.pygmanager.service.Userservice" ref="userService"/>-->
