@@ -10,13 +10,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MyRepositoryTest {
+public class CategoryRepositoryTest {
     @Autowired
-    MyRepository myRepository;
+    CategoryRepository categoryRepository;
 
     @Test
     public void test(){
-        ProductCategory byCategoryId = myRepository.findByCategoryId(1);
+        ProductCategory byCategoryId = categoryRepository.findByCategoryId(1);
         System.out.println(byCategoryId);
     }
 

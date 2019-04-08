@@ -1,0 +1,54 @@
+package com.chuanfangn.sell.serviceImpl;
+
+import com.chuanfangn.sell.entity.ProductInfo;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@Slf4j
+public class ProductInfoServiceImplTest {
+    @Autowired
+    ProductInfoServiceImpl productInfoService;
+
+    @Test
+    public void findOne() {
+        ProductInfo one = productInfoService.findOne("1");
+        Assert.assertNotNull(one);
+    }
+
+    @Test
+    public void findByStatus() {
+        //查询上架商品
+        List<ProductInfo> byStatus = productInfoService.findByStatus(0);
+        Assert.assertNotEquals(0,byStatus.size());
+    }
+
+    @Test
+    public void findAll() {
+        List<ProductInfo> all = productInfoService.findAll();
+        Assert.assertNotEquals(0,all.size());
+    }
+
+    @Test
+    public void findAllViaPage() {
+        log.info("以后测试...");
+    }
+
+    @Test
+    public void save() {
+        ProductInfo one = productInfoService.findOne("1");
+        one.setCategoryType(2);
+        ProductInfo save = productInfoService.save(one);
+        Assert.assertNotNull(save);
+    }
+}

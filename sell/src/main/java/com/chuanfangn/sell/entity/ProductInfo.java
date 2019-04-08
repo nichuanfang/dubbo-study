@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 /**
  * 商品信息实体
+ * @author Administrator
  */
 @Entity
 @Data
@@ -26,9 +27,9 @@ public class ProductInfo {
   private String productDescription;
   /**商品图标*/
   private String productIcon;
-  /**商品状态*/
+  /**商品状态,0上架 1下架*/
   private Integer productStatus;
-  /**商品类型*/
+  /**类型编号*/
   private Integer categoryType;
   /**创建时间*/
   private java.sql.Timestamp createTime;
