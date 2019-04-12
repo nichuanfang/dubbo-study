@@ -29,7 +29,4 @@ public interface ProductInfoRepository extends JpaRepository<ProductInfo, String
      * @return java.util.List<com.chuanfangn.sell.entity.ProductInfo>
      */
     List<ProductInfo> findAllByProductStatus(Integer status);
-
-
-
 }

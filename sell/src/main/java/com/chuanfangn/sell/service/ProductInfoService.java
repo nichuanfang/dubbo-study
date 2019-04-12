@@ -55,7 +55,14 @@ public interface ProductInfoService {
      * @return com.chuanfangn.sell.entity.ProductInfo
      */
     ProductInfo save(ProductInfo productInfo);
-
+    /**
+     * 方法功能:  删除商品
+     * @param id
+     * @author f18326186224@gmail.com
+     * @creatDate  2019/4/8 17:33
+     * @return void
+     */
+    void delete(String id);
     //加库存,待完善
     //减库存,待完善
 }

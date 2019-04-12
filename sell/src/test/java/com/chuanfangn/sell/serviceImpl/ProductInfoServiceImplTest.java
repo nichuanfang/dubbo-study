@@ -1,6 +1,7 @@
 package com.chuanfangn.sell.serviceImpl;
 
 import com.chuanfangn.sell.entity.ProductInfo;
+import com.chuanfangn.sell.enums.ProductStatusEnums;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class ProductInfoServiceImplTest {
     @Test
     public void findByStatus() {
         //查询上架商品
-        List<ProductInfo> byStatus = productInfoService.findByStatus(0);
+        List<ProductInfo> byStatus = productInfoService.findByStatus(ProductStatusEnums.UP.getCode());
         Assert.assertNotEquals(0,byStatus.size());
     }
 
@@ -37,6 +38,7 @@ public class ProductInfoServiceImplTest {
     public void findAll() {
         List<ProductInfo> all = productInfoService.findAll();
         Assert.assertNotEquals(0,all.size());
+        log.info("测试通过");
     }
 
     @Test
@@ -50,5 +52,9 @@ public class ProductInfoServiceImplTest {
         one.setCategoryType(2);
         ProductInfo save = productInfoService.save(one);
         Assert.assertNotNull(save);
+    }
+    @Test
+    public void delete(){
+        productInfoService.delete("1");
     }
 }

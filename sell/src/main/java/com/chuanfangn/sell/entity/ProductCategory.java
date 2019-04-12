@@ -19,7 +19,7 @@ public class ProductCategory {
   private Integer categoryId;
   /**类别名称*/
   private String categoryName;
-  /**类别标志*/
+  /**类目编号*/
   private Integer categoryType;
   /**创建时间*/
   private java.sql.Timestamp createTime;
