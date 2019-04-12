@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum PayStausEnums {
-    SUCCESS(0, "支付完成"),
-    FAILED(1, "支付失败");
+    WAIT(0, "等待支付"),
+    SUCCESS(1, "支付成功");
     private Integer code;
     private String msg;
 
