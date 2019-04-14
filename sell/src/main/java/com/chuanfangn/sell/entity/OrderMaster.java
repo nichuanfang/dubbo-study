@@ -5,10 +5,8 @@ import com.chuanfangn.sell.enums.PayStausEnums;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @DynamicUpdate
@@ -27,7 +25,7 @@ public class OrderMaster {
   /**买家openid*/
   private String buyerOpenid;
   /**`订单数量*/
-  private double orderAmount;
+  private BigDecimal orderAmount;
   /**订单状态,默认为新下单*/
   private Integer orderStatus= OrderStatusEnums.NEW.getCode();
   /**支付状态,默认为0未支付*/
