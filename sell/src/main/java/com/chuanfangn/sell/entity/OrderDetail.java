@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -19,8 +18,8 @@ public class OrderDetail {
   private String orderId;
   private String productId;
   private String productName;
-  private BigDecimal productPrice;
-  private Integer productQuantity;
+  private double productPrice;
+  private long productQuantity;
   private String productIcon;
   private java.sql.Timestamp createTime;
   private java.sql.Timestamp updateTime;
