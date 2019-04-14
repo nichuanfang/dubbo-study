@@ -13,6 +13,8 @@ spring:
     url: jdbc:mysql:///sell?useSSL=false&amp&serverTimezone=UTC&characterEncoding=utf-8
   jpa:
     show-sql: true
+  aop:
+    proxy-target-class: true
 
 eureka:
   client:

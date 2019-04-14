@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * @description:
+ * @description:订单主表的包装pojo
  * @author: 1290274972@qq.com
  * @program: sell
  * @create: 2019-04-14 22:41
@@ -36,7 +36,7 @@ public class OrderDTO {
     private java.sql.Timestamp createTime;
     /**更新时间*/
     private java.sql.Timestamp updateTime;
-    /**订单详情*/
+    /**订单详情集合*/
     private List<OrderDetail> orderDetails;
 
 }
