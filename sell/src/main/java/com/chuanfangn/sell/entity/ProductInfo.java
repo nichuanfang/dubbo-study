@@ -1,6 +1,7 @@
 package com.chuanfangn.sell.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @DynamicUpdate
+@DynamicInsert
 public class ProductInfo {
   @Id
   private String productId;

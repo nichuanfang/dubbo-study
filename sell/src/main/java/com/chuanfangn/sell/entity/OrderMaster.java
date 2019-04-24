@@ -1,23 +1,22 @@
 package com.chuanfangn.sell.entity;
 
 import com.chuanfangn.sell.enums.OrderStatusEnums;
-import com.chuanfangn.sell.enums.PayStausEnums;
+import com.chuanfangn.sell.enums.PayStatusEnums;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Data
 @DynamicUpdate
 @Entity
+@DynamicInsert
 public class OrderMaster {
   /**订单id*/
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String orderId;
   /**买家姓名*/
   private String buyerName;
@@ -32,7 +31,7 @@ public class OrderMaster {
   /**订单状态,默认为新下单*/
   private Integer orderStatus= OrderStatusEnums.NEW.getCode();
   /**支付状态,默认为0未支付*/
-  private Integer payStatus= PayStausEnums.WAIT.getCode();
+  private Integer payStatus= PayStatusEnums.WAIT.getCode();
   /**创建时间*/
   private java.sql.Timestamp createTime;
   /**更新时间*/

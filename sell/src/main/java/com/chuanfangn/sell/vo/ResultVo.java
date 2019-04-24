@@ -17,5 +17,6 @@ public class ResultVo {
     private Integer code;
     /**描述*/
     private String msg;
+    /**商品列表*/
     private List<ProductVo> data;
 }

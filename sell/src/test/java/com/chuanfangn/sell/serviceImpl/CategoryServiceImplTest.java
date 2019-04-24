@@ -1,6 +1,7 @@
 package com.chuanfangn.sell.serviceImpl;
 
 import com.chuanfangn.sell.entity.ProductCategory;
+import com.chuanfangn.sell.service.serviceimpl.CategoryServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

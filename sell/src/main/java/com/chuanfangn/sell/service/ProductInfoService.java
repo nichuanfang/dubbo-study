@@ -1,5 +1,6 @@
 package com.chuanfangn.sell.service;
 
+import com.chuanfangn.sell.dto.CartDTO;
 import com.chuanfangn.sell.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,6 +64,15 @@ public interface ProductInfoService {
      * @return void
      */
     void delete(String id);
+
+    /**
+     * 方法功能: 减库存
+     * @param collect
+     * @author f18326186224@gmail.com
+     * @creatDate  2019/4/15 1:29
+     * @return void
+     */
+    void deCreaseStock(List<CartDTO> collect);
+
     //加库存,待完善
-    //减库存,待完善
 }

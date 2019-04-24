@@ -1,6 +1,9 @@
-package com.chuanfangn.sell.serviceImpl;
+package com.chuanfangn.sell.service.serviceimpl;
 
+import com.chuanfangn.sell.dto.CartDTO;
 import com.chuanfangn.sell.entity.ProductInfo;
+import com.chuanfangn.sell.enums.ResultEnums;
+import com.chuanfangn.sell.exception.ProductException;
 import com.chuanfangn.sell.repository.ProductInfoRepository;
 import com.chuanfangn.sell.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +58,22 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Override
     public void delete(String id) {
         productInfoRepository.deleteById(id);
+    }
+
+    @Override
+    public void deCreaseStock(List<CartDTO> collect) {
+        collect.forEach(e -> {
+            String productId = e.getProductId();
+            Integer productQuantity = e.getProductQuantity();
+            //从数据库查询库存
+            ProductInfo one = findOne(productId);
+            Integer productStock = one.getProductStock();
+            if(productQuantity>productStock){
+                throw new ProductException(ResultEnums.PRODUCT_STOCK_ERROR);
+            }
+            //减库存
+            one.setProductStock(productStock-productQuantity);
+            save(one);
+        });
     }
 }

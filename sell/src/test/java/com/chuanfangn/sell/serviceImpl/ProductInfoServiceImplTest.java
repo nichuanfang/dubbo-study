@@ -2,6 +2,7 @@ package com.chuanfangn.sell.serviceImpl;
 
 import com.chuanfangn.sell.entity.ProductInfo;
 import com.chuanfangn.sell.enums.ProductStatusEnums;
+import com.chuanfangn.sell.service.serviceimpl.ProductInfoServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,8 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

@@ -1,4 +1,4 @@
-package com.chuanfangn.sell.serviceImpl;
+package com.chuanfangn.sell.service.serviceimpl;
 
 import com.chuanfangn.sell.entity.ProductCategory;
 import com.chuanfangn.sell.repository.CategoryRepository;

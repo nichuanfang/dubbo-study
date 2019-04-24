@@ -1,11 +1,10 @@
 package com.chuanfangn.sell.dto;
 
 import com.chuanfangn.sell.entity.OrderDetail;
-import com.chuanfangn.sell.enums.OrderStatusEnums;
-import com.chuanfangn.sell.enums.PayStausEnums;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -32,11 +31,11 @@ public class OrderDTO {
     private Integer orderStatus;
     /**支付状态,默认为0未支付*/
     private Integer payStatus;
-    /**创建时间*/
-    private java.sql.Timestamp createTime;
-    /**更新时间*/
-    private java.sql.Timestamp updateTime;
     /**订单详情集合*/
     private List<OrderDetail> orderDetails;
+    /**创建时间*/
+    private Timestamp createTime;
+    /**更新时间*/
+    private Timestamp updateTime;
 
 }
