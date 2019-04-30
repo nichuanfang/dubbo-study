@@ -12,11 +12,11 @@ import java.util.List;
  * @version: 1.0
  **/
 @Data
-public class ResultVo {
+public class ResultVo<T> {
     /**状态码*/
     private Integer code;
     /**描述*/
     private String msg;
     /**商品列表*/
-    private List<ProductVo> data;
+    private T data;
 }

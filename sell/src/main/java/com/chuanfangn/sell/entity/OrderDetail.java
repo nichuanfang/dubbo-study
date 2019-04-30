@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
+/**
+ * @author Administrator
+ */
 @Data
 @Entity
 @DynamicUpdate

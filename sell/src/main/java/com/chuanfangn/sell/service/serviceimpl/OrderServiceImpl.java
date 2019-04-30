@@ -18,6 +18,8 @@ import com.chuanfangn.sell.utils.IdGenerateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,7 +66,8 @@ public class OrderServiceImpl implements OrderService {
         orderDetails.forEach(e -> {
             ProductInfo one = productInfoService.findOne(e.getProductId());
             totalAccount = one.getProductPrice().add(new BigDecimal(e.getProductQuantity())).add(totalAccount);
-            BeanUtils.copyProperties(one,e);
+            BeanUtils.copyProperties(one, e);
+            e.setDetailId(IdGenerateUtil.getId());
             e.setOrderId(id);
             //订单详情入库
             orderDetailRepository.save(e);
@@ -86,8 +89,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO finish(OrderDTO orderDTO) {
         //1.判断订单状态
-        if(orderDTO.getOrderStatus()!=0){
-            log.error("[完结订单]订单状态错误, orderId={}",orderDTO.getOrderId());
+        if (orderDTO.getOrderStatus() != 0) {
+            log.error("[完结订单]订单状态错误, orderId={}", orderDTO.getOrderId());
             throw new ProductException(ResultEnums.ORDER_STATUS_ERROR);
         }
         //2.修改订单状态为已完结
@@ -100,20 +103,35 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO paid(OrderDTO orderDTO) {
         //1.判断是否是新订单
-        if(!orderDTO.getOrderStatus().equals(OrderStatusEnums.NEW.getCode())) {
-            log.error("[支付订单]订单状态不正确,orderID={}",orderDTO.getOrderId());
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnums.NEW.getCode())) {
+            log.error("[支付订单]订单状态不正确,orderID={}", orderDTO.getOrderId());
             throw new ProductException(ResultEnums.ORDER_STATUS_ERROR);
         }
         //2,判断是否已支付
-        if(!orderDTO.getPayStatus().equals(PayStatusEnums.WAIT.getCode())){
-            log.error("[支付订单]支付状态不正确,orderID={}",orderDTO.getOrderId());
+        if (!orderDTO.getPayStatus().equals(PayStatusEnums.WAIT.getCode())) {
+            log.error("[支付订单]支付状态不正确,orderID={}", orderDTO.getOrderId());
             throw new ProductException(ResultEnums.ORDER_PAY_STATUS_ERROR);
         }
         //3.更改支付状态为已支付
         orderDTO.setPayStatus(PayStatusEnums.SUCCESS.getCode());
         OrderMaster converter = OrderDto2OrderMasterConverter.converter(orderDTO);
         orderMasterRepository.save(converter);
-        log.info("[支付订单]支付成功,orderID={}",orderDTO.getOrderId());
+        log.info("[支付订单]支付成功,orderID={}", orderDTO.getOrderId());
         return orderDTO;
+    }
+
+    @Override
+    public List<OrderDTO> getOrderDtoList(String buyerOpenid, Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<OrderMaster> orderMasterList = orderMasterRepository.findAllByBuyerOpenid(buyerOpenid, pageable);
+        List<OrderDTO> orderDTOList = orderMasterList.stream().map(e -> {
+            OrderDTO orderDTO = new OrderDTO();
+            String orderId = e.getOrderId();
+            List<OrderDetail> allByOrderId = orderDetailRepository.findAllByOrderId(orderId);
+            BeanUtils.copyProperties(e, orderDTO);
+            orderDTO.setOrderDetails(allByOrderId);
+            return orderDTO;
+        }).collect(Collectors.toList());
+        return orderDTOList;
     }
 }

@@ -14,10 +14,10 @@ import java.util.List;
  **/
 public class VoUtil {
     public static ResultVo success(Object data){
-        ResultVo resultVo = new ResultVo();
+        ResultVo<Object> resultVo = new ResultVo<>();
         resultVo.setCode(0);
         resultVo.setMsg("success");
-        resultVo.setData((List<ProductVo>) data);
+        resultVo.setData(data);
         return resultVo;
     }
 

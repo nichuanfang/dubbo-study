@@ -19,8 +19,11 @@ import com.chuanfangn.sell.vo.ProductInfoVo;
 import com.chuanfangn.sell.vo.ProductVo;
 import com.chuanfangn.sell.vo.ResultVo;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +38,8 @@ import java.util.*;
  * @version: 0.01
  **/
 @RestController
-public class SellController {
+@Slf4j
+public class ProductController {
 
     @Autowired
     ProductInfoService productInfoService;
@@ -45,7 +49,7 @@ public class SellController {
     @Autowired
     OrderService orderService;
 
-    @GetMapping("/list")
+    @GetMapping("/product/list")
     public ResultVo test(){
         List<ProductInfo> productInfoList = productInfoService.findByStatus(ProductStatusEnums.UP.getCode());
         ArrayList<Integer> arrayList = new ArrayList();
@@ -69,29 +73,5 @@ public class SellController {
         }
         ResultVo success = VoUtil.success(productVos);
         return success;
-    }
-
-    @PostMapping("/buyer/order/create")
-    public OrderVo createOrder(@Valid OrderForm orderForm,BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            throw new ProductException(ResultEnums.ORDER_UPDATE_FAIL.getCode(),bindingResult.getFieldError().getDefaultMessage());
-        }
-        Gson gson = new Gson();
-        List<CartDTO> cartDTOList = gson.fromJson(orderForm.getItems(),List.class);
-        List<OrderDetail> orderDetails = CartDtoList2OrderDetailListConverter.converter(cartDTOList);
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setBuyerName(orderForm.getName());
-        orderDTO.setBuyerPhone(orderForm.getPhone());
-        orderDTO.setBuyerAddress(orderForm.getAddress());
-        orderDTO.setBuyerOpenid(orderForm.getOpenid());
-        orderDTO.setOrderDetails(orderDetails);
-        OrderDTO dto = orderService.create(orderDTO);
-        OrderVo orderVo = new OrderVo();
-        orderVo.setCode("200");
-        orderVo.setMessage("true");
-        HashMap<String, String> stringStringHashMap = new HashMap<>();
-        stringStringHashMap.put("orderId",orderDTO.getOrderId());
-        orderVo.setData(stringStringHashMap);
-        return orderVo;
     }
 }

@@ -1,4 +1,6 @@
 package com.chuanfangn.sell.service.serviceimpl;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 
 import com.chuanfangn.sell.dto.OrderDTO;
@@ -8,6 +10,7 @@ import com.chuanfangn.sell.enums.OrderStatusEnums;
 import com.chuanfangn.sell.enums.PayStatusEnums;
 import com.chuanfangn.sell.repository.OrderMasterRepository;
 import com.chuanfangn.sell.utils.IdGenerateUtil;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -65,5 +68,24 @@ public class OrderServiceImplTest {
         BeanUtils.copyProperties(orderMaster,orderDTO);
         OrderDTO paid = orderService.paid(orderDTO);
         Assert.assertNotEquals(PayStatusEnums.WAIT.getCode(),paid.getPayStatus());
+    }
+
+    @Test
+    public void test(){
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setDetailId("1");
+        orderDetail.setOrderId("23");
+        orderDetail.setProductId("222");
+        orderDetail.setProductName("dfs");
+        orderDetail.setProductPrice(new BigDecimal("0"));
+        orderDetail.setProductQuantity(0);
+        orderDetail.setProductIcon("sdfsd");
+        orderDetail.setCreateTime(new Timestamp(new java.util.Date().getTime()));
+        orderDetail.setUpdateTime(new Timestamp(new java.util.Date().getTime()));
+        orderDetails.add(orderDetail);
+        Gson gson = new Gson();
+        String s = gson.toJson(orderDetails);
+        System.out.println(s);
     }
 }
