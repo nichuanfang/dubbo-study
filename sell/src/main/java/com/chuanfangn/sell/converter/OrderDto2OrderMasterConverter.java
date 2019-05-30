@@ -18,6 +18,7 @@ public class OrderDto2OrderMasterConverter {
     public static OrderMaster converter(OrderDTO orderDTO){
         OrderMaster orderMaster = new OrderMaster();
         BeanUtils.copyProperties(orderDTO,orderMaster);
+        orderMaster.setOrderAmount(orderDTO.getOrderAmount().doubleValue());
         return orderMaster;
     }
     public static List<OrderMaster> converter(List<OrderDTO> orderDTOList){

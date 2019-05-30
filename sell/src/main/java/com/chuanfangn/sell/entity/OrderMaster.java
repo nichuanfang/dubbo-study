@@ -2,6 +2,8 @@ package com.chuanfangn.sell.entity;
 
 import com.chuanfangn.sell.enums.OrderStatusEnums;
 import com.chuanfangn.sell.enums.PayStatusEnums;
+import com.chuanfangn.sell.utils.Date2LongJsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -9,6 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author Administrator
@@ -30,13 +33,15 @@ public class OrderMaster {
   /**买家openid*/
   private String buyerOpenid;
   /**`订单总金额*/
-  private BigDecimal orderAmount;
+  private Double orderAmount;
   /**订单状态,默认为新下单*/
   private Integer orderStatus= OrderStatusEnums.NEW.getCode();
   /**支付状态,默认为0未支付*/
   private Integer payStatus= PayStatusEnums.WAIT.getCode();
   /**创建时间*/
-  private java.sql.Timestamp createTime;
+  @JsonSerialize(using = Date2LongJsonSerializer.class)
+  private Date createTime;
   /**更新时间*/
-  private java.sql.Timestamp updateTime;
+  @JsonSerialize(using = Date2LongJsonSerializer.class)
+  private Date updateTime;
 }

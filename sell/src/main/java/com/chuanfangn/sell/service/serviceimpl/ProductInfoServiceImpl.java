@@ -76,4 +76,15 @@ public class ProductInfoServiceImpl implements ProductInfoService {
             save(one);
         });
     }
+
+    @Override
+    public void increaseStock(List<CartDTO> list){
+        list.forEach(e->{
+            Integer productQuantity = e.getProductQuantity();
+            ProductInfo one = findOne(e.getProductId());
+            Integer productStock = one.getProductStock();
+            one.setProductStock(productStock+productQuantity);
+            save(one);
+        });
+    }
 }

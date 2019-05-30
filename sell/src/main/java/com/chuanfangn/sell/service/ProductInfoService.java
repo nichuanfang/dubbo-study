@@ -74,5 +74,12 @@ public interface ProductInfoService {
      */
     void deCreaseStock(List<CartDTO> collect);
 
-    //加库存,待完善
+    /**
+     * 方法功能: 加库存
+     * @param list
+     * @author f18326186224@gmail.com
+     * @creatDate  2019/5/18 23:24
+     * @return void
+     */
+    void increaseStock(List<CartDTO> list);
 }

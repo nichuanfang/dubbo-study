@@ -27,8 +27,8 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @Slf4j
 public class OrderServiceImplTest {
-    private final String OPENID = "54675643";
-    private final String ORDERID = "760007_1555269702092";
+    private final String OPENID = "oTgZpwTmoIcVzc0LlB3gsvU5sqFc";
+    private final String ORDERID = "";
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
@@ -36,7 +36,7 @@ public class OrderServiceImplTest {
     OrderServiceImpl orderService;
 
     @Test
-    public void deCreaseOrderTest(){
+    public void createOrderTest(){
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setBuyerAddress("浙江省杭州市");
         orderDTO.setBuyerName("倪传方");
@@ -44,7 +44,6 @@ public class OrderServiceImplTest {
         orderDTO.setBuyerPhone("18326186224");
         List<OrderDetail> orderDetails = new ArrayList<>();
         OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setDetailId(IdGenerateUtil.getId());
         orderDetail.setProductId("1");
         orderDetail.setProductQuantity(2);
         orderDetails.add(orderDetail);
@@ -78,7 +77,7 @@ public class OrderServiceImplTest {
         orderDetail.setOrderId("23");
         orderDetail.setProductId("222");
         orderDetail.setProductName("dfs");
-        orderDetail.setProductPrice(new BigDecimal("0"));
+        orderDetail.setProductPrice(5.0);
         orderDetail.setProductQuantity(0);
         orderDetail.setProductIcon("sdfsd");
         orderDetail.setCreateTime(new Timestamp(new java.util.Date().getTime()));

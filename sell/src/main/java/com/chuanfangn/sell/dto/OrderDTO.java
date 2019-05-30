@@ -1,10 +1,17 @@
 package com.chuanfangn.sell.dto;
 
 import com.chuanfangn.sell.entity.OrderDetail;
+import com.chuanfangn.sell.enums.OrderStatusEnums;
+import com.chuanfangn.sell.enums.PayStatusEnums;
+import com.chuanfangn.sell.utils.Date2LongJsonSerializer;
+import com.chuanfangn.sell.utils.EnumUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,9 +40,23 @@ public class OrderDTO {
     private Integer payStatus;
     /**订单详情集合*/
     private List<OrderDetail> orderDetails;
+
     /**创建时间*/
-    private Timestamp createTime;
+    @JsonSerialize(using = Date2LongJsonSerializer.class)
+    private Date createTime;
     /**更新时间*/
-    private Timestamp updateTime;
+    @JsonSerialize(using = Date2LongJsonSerializer.class)
+    private Date updateTime;
+
+    @JsonIgnore
+    public OrderStatusEnums getOrderStatusEnums(){
+        return EnumUtils.getByCode(orderStatus, OrderStatusEnums.class);
+
+    }
+
+    @JsonIgnore
+    public PayStatusEnums getPayStatusEnums(){
+     return EnumUtils.getByCode(payStatus, PayStatusEnums.class);
+    }
 
 }

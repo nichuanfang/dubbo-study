@@ -1,6 +1,7 @@
 package com.chuanfangn.sell.repository;
 
 import com.chuanfangn.sell.entity.OrderMaster;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -22,5 +23,5 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster,String>
      * @creatDate  2019/4/30 15:29
      * @return java.util.List<com.chuanfangn.sell.entity.OrderMaster>
      */
-    List<OrderMaster> findAllByBuyerOpenid(String openid, Pageable pageable);
+    Page<OrderMaster> findAllByBuyerOpenid(String openid, Pageable pageable);
 }

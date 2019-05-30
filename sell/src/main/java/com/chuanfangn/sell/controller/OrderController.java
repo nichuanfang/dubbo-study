@@ -13,11 +13,14 @@ import com.chuanfangn.sell.vo.OrderVo;
 import com.chuanfangn.sell.vo.ResultVo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.lly835.bestpay.model.RefundResponse;
+import com.lly835.bestpay.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.querydsl.QPageRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -34,7 +37,7 @@ import java.util.List;
  * @create: 2019-04-30 14:43
  * @version:
  **/
-@RestController
+@Controller
 @Slf4j
 @RequestMapping("/buyer/order")
 public class OrderController {
@@ -43,7 +46,8 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/create")
-    public OrderVo createOrder(@Valid OrderForm orderForm, BindingResult bindingResult){
+    @ResponseBody
+    public OrderDTO createOrder(@Valid OrderForm orderForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             throw new ProductException(ResultEnums.ORDER_UPDATE_FAIL.getCode(),bindingResult.getFieldError().getDefaultMessage());
         }
@@ -59,6 +63,7 @@ public class OrderController {
         orderDTO.setBuyerPhone(orderForm.getPhone());
         orderDTO.setBuyerAddress(orderForm.getAddress());
         orderDTO.setBuyerOpenid(orderForm.getOpenid());
+        orderDTO.setBuyerOpenid("oTgZpwTmoIcVzc0LlB3gsvU5sqFc");
         orderDTO.setOrderDetails(orderDetails);
         OrderDTO dto = orderService.create(orderDTO);
         OrderVo orderVo = new OrderVo();
@@ -67,10 +72,10 @@ public class OrderController {
         HashMap<String, String> stringStringHashMap = new HashMap<>();
         stringStringHashMap.put("orderId",orderDTO.getOrderId());
         orderVo.setData(stringStringHashMap);
-        return orderVo;
+        return dto;
     }
 
-    @GetMapping("/list")
+
     /**
      * 方法功能:@requestParam标记的变量,会自动与相应请求的参数进行绑定,可以给请求参数设定默认值,此时可以不用传递请求参数
      * @param openid
@@ -80,13 +85,26 @@ public class OrderController {
      * @creatDate  2019/4/30 15:07
      * @return com.chuanfangn.sell.vo.ResultVo<java.util.List<com.chuanfangn.sell.dto.OrderDTO>>
      */
+    @GetMapping("/list")
     public ResultVo<List<OrderDTO>> getOrderList(@RequestParam(value = "openid") String openid,@RequestParam(value = "page",defaultValue = "0") Integer page,@RequestParam(value = "size",defaultValue = "10")Integer size){
         if(StringUtils.isEmpty(openid)){
             log.error("[查询订单]openid不存在");
             throw new ProductException(ResultEnums.PARAM_ERROR);
         }
-        List<OrderDTO> orderDtoList = orderService.getOrderDtoList(openid,page,size);
-        ResultVo success = VoUtil.success(orderDtoList);
+        Page<OrderDTO> orderDtoList = orderService.getOrderDtoList(openid, page, size);
+        ResultVo success = VoUtil.success(orderDtoList.getContent());
         return success;
     }
+
+    @RequestMapping("/cancel")
+    @ResponseBody
+    public RefundResponse cancel(@RequestParam("orderId") String orderId){
+        RefundResponse response = orderService.cancel(orderId);
+        if(null != response) {
+            log.info("[取消订单]成功,response={}",response);
+        }
+        JsonUtil.toJson(response);
+        return response;
+    }
+
 }

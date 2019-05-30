@@ -28,7 +28,7 @@ public class OrderDetailRepositoryTest {
         orderDetail.setOrderId("4444");
         orderDetail.setProductId("1");
         orderDetail.setProductName("dsf");
-        orderDetail.setProductPrice(new BigDecimal("2"));
+        orderDetail.setProductPrice(2.0);
         orderDetail.setProductQuantity(1);
         orderDetail.setProductIcon("asd");
         orderDetail.setCreateTime(new Timestamp(new java.util.Date().getTime()));

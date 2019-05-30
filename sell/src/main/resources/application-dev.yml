@@ -1,11 +1,13 @@
 server:
   port: 80
+  servlet:
+    context-path: /sell
 
 spring:
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+  freemarker:
+    suffix: .ftl
     cache: false
+    template-loader-path: classpath:/templates/
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -15,4 +17,20 @@ spring:
     show-sql: true
   aop:
     proxy-target-class: true
+  jackson:
+    default-property-inclusion: non_null
 
+weixin:
+  mpAppId: wxc8670bd42be55919
+  mpAppSecret: 98da4426ddc9823162d91b1466e98d9b
+
+  mpPayAppId: wxd898fcb01713c658
+  #mpAppSecret: 98da4426ddc9823162d91b1466e98d9b
+
+  mchId: 1483469312
+  mchKey: C5245D70627C1F8E9964D494B0735025
+  #refund needs
+  keyPath: E:\workspace\sell\src\main\resources\wxcert\h5.p12
+logging:
+  level:
+    com.chuanfangn.sell.controller: trace
