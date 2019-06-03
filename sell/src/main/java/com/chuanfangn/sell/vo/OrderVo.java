@@ -2,6 +2,7 @@ package com.chuanfangn.sell.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Map;
  * @version:
  **/
 @Data
-public class OrderVo {
+public class OrderVo implements Serializable {
     /**状态码*/
     private String code;
     /**描述*/

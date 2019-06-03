@@ -4,6 +4,7 @@ import com.chuanfangn.sell.entity.ProductCategory;
 import com.chuanfangn.sell.repository.CategoryRepository;
 import com.chuanfangn.sell.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,9 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
+
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
 
     @Override
     public ProductCategory findByCategoryId(Integer id) {
