@@ -180,6 +180,10 @@ public class OrderServiceImpl implements OrderService {
         }else if (!one.getPayStatus().equals(PayStatusEnums.SUCCESS.getCode())){
             throw new ProductException(ResultEnums.ORDER_PAY_STATUS_ERROR);
         }
+
+        if(!OrderStatusEnums.NEW.getCode().equals(one.getOrderStatus())) {
+            throw new ProductException(ResultEnums.ORDER_STATUS_ERROR);
+        }
         //退还库存
         List<OrderDetail> orderDetails = one.getOrderDetails();
         if(CollectionUtils.isEmpty(orderDetails)) {
@@ -194,6 +198,7 @@ public class OrderServiceImpl implements OrderService {
         }
         //修改支付状态
         one.setPayStatus(PayStatusEnums.Refunding.getCode());
+        one.setOrderStatus(OrderStatusEnums.CANCEL.getCode());
         OrderMaster save = save(one);
         log.info(JsonUtil.toJson(save));
         return refund;

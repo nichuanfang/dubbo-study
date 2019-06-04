@@ -53,7 +53,6 @@ public class PayController {
         JsonUtil.toJson(pay);
         log.info("[微信支付]payResponse=" + pay);
         map.put("pay", pay);
-
         return "create";
     }
 
