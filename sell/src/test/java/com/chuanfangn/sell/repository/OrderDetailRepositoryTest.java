@@ -21,21 +21,7 @@ import static org.junit.Assert.*;
 public class OrderDetailRepositoryTest {
     @Autowired
     OrderDetailRepository orderDetailRepository;
-    @Test
-    public void test(){
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setDetailId("1231");
-        orderDetail.setOrderId("4444");
-        orderDetail.setProductId("1");
-        orderDetail.setProductName("dsf");
-        orderDetail.setProductPrice(2.0);
-        orderDetail.setProductQuantity(1);
-        orderDetail.setProductIcon("asd");
-        orderDetail.setCreateTime(new Timestamp(new java.util.Date().getTime()));
-        orderDetail.setUpdateTime(new Timestamp(new java.util.Date().getTime()));
-        OrderDetail save = orderDetailRepository.save(orderDetail);
-        log.info(save.toString());
-    }
+
     @Test
     public void findAllByOrderId(){
         List<OrderDetail> allByOrderId = orderDetailRepository.findAllByOrderId("498170_1556604466090");

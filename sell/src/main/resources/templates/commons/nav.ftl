@@ -17,8 +17,8 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">operation</li>
-                        <li><a href="#">list</a></li>
-                        <li><a href="#">update</a></li>
+                        <li><a href="/sell/seller/product/list">list</a></li>
+                        <li><a href="/sell/seller/product/update">add</a></li>
                     </ul>
                 </li>
 
@@ -27,9 +27,12 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">operation</li>
-                        <li><a href="#">list</a></li>
-                        <li><a href="#">update</a></li>
+                        <li><a href="/sell/seller/productcategory/list">list</a></li>
+                        <li><a href="/sell/seller/productcategory/update">add</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
                 </li>
             </ul>
         </nav>

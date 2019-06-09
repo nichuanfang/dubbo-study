@@ -2,6 +2,8 @@ package com.chuanfangn.sell.service;
 
 import com.chuanfangn.sell.dto.CartDTO;
 import com.chuanfangn.sell.entity.ProductInfo;
+import com.chuanfangn.sell.form.ProductForm;
+import com.github.pagehelper.PageInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -40,6 +42,8 @@ public interface ProductInfoService {
      * @return java.util.List<com.chuanfangn.sell.entity.ProductInfo>
      */
     List<ProductInfo> findAll();
+
+
     /**
      * 方法功能: 分页查询商品
      * @param pageable
@@ -82,4 +86,40 @@ public interface ProductInfoService {
      * @return void
      */
     void increaseStock(List<CartDTO> list);
+
+    /**
+     * 方法功能: 通过pagehelper分页查询商品
+     * @param
+     * @author f18326186224@gmail.com
+     * @creatDate  2019/6/5 21:24
+     * @return com.github.pagehelper.PageInfo<com.chuanfangn.sell.entity.ProductInfo>
+     */
+    PageInfo<ProductInfo> findBypagehelper(int page, int size);
+
+    /**
+     * 方法功能: 商品上架
+     * @param productId
+     * @author f18326186224@gmail.com
+     * @creatDate  2019/6/6 19:37
+     * @return java.lang.Boolean
+     */
+    Boolean up(String productId);
+
+    /**
+     * 方法功能: 商品下架
+     * @param productId
+     * @author f18326186224@gmail.com
+     * @creatDate  2019/6/6 20:41
+     * @return java.lang.Boolean
+     */
+    Boolean down(String productId);
+
+    /**
+     * 方法功能: 新增或者修改
+     * @param productForm
+     * @author f18326186224@gmail.com
+     * @creatDate  2019/6/8 23:35
+     * @return java.lang.Boolean
+     */
+    void update(ProductForm productForm) ;
 }

@@ -14,7 +14,7 @@
             <span class="hamb-bottom"></span>
         </button>
     <#--主要内容-->
-        <div class="container">
+        <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <table class="table table-condensed table-bordered" style="width: 30%">

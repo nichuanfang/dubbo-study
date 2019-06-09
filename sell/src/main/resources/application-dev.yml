@@ -2,7 +2,6 @@ server:
   port: 80
   servlet:
     context-path: /sell
-
 spring:
   freemarker:
     suffix: .ftl
@@ -34,3 +33,11 @@ weixin:
 logging:
   level:
     com.chuanfangn.sell.controller: trace
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.chuanfangn.sell.entity
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

@@ -1,12 +1,12 @@
 <html>
 <head>
-    <#include "head.ftl"/>
+    <#include "../commons/head.ftl"/>
 </head>
 <body>
 
 <div id="wrapper">
     <div class="overlay"></div>
-    <#include "nav.ftl"/>
+    <#include "../commons/nav.ftl"/>
     <div id="page-content-wrapper">
         <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
             <span class="hamb-top"></span>
@@ -17,15 +17,24 @@
         <div class="container">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <div class="alert alert-dismissable alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4>
-                            ${message}
-                        </h4> <strong>Success!</strong> 三秒后自动跳转,若无法跳转<a href="${url!'/sell/seller/order/list'}" class="alert-link">点我</a>
-                    </div>
+                    <form role="form" method="post" action="#" id="form">
+                        <div class="form-group">
+                            <label for="">分类名称</label><input type="text" class="form-control" id="categoryName" name="categoryName" value="${(category.categoryName)!''}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="">分类类别</label>
+                            <input
+                                <#if category??>readonly</#if>
+                                type="text" class="form-control" id="categoryType" name="categoryType" value="${(category.categoryType)!''}"/>
+                        </div>
+                        <input hidden name="categoryId" value="${(category.categoryId)!''}"/>
+                        <button type="button" class="btn btn-default" id="ncf">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
 
@@ -35,9 +44,24 @@
 
 <script>
 
-    setTimeout('window.location.href = "${url!'/sell/seller/order/list'}"',3000);
+    $("#ncf").click(function () {
+        $.ajax({
+            url:"/sell/seller/productcategory/submit",
+            type:"post",
+            data:$("#form").serialize(),
+            dataType:"text",
+            success: function (data) {
+                alert(data);
+                location.href="/sell/seller/productcategory/list";
+            },
+            error: function () {
+                alert("fail");
+            }
+        });
+    });
 
-    $(document).ready(function () {
+    $(function () {
+
         var trigger = $('.hamburger'),
                 overlay = $('.overlay'),
                 isClosed = false;
@@ -68,3 +92,4 @@
 </script>
 </body>
 </html>
+

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * @description: 
+ * @description:
  * @author: 1290274972@qq.com
  * @program: sell
  * @create: 2019-04-07 13:50
@@ -21,7 +21,7 @@ public interface CategoryRepository extends JpaRepository<ProductCategory, Integ
      * @return java.util.List<com.chuanfangn.sell.entity.ProductCategory>
      */
     List<ProductCategory> findByCategoryTypeIn(List<Integer> list);
-    
+
     /**
      * 方法功能: 根据分类id查询商品分类信息
      * @param id
@@ -31,4 +31,5 @@ public interface CategoryRepository extends JpaRepository<ProductCategory, Integ
      */
     ProductCategory findByCategoryId(Integer id);
 
+    ProductCategory findByCategoryType(Integer categoryType);
 }

@@ -2,6 +2,7 @@ package com.chuanfangn.sell.service;
 
 import com.lly835.bestpay.model.PayResponse;
 import com.lly835.bestpay.model.RefundResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @description:
@@ -11,6 +12,8 @@ import com.lly835.bestpay.model.RefundResponse;
  * @version:
  **/
 public interface PayService {
+
+
     /**
      * 方法功能: 异步通知service
      * @param notifyDate

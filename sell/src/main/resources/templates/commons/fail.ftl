@@ -21,7 +21,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h4>
                             ${message}
-                        </h4> <strong>Warning!</strong>三秒后自动跳转,若无法跳转<a href="${url}" class="alert-link">点我</a>
+                        </h4> <strong>Warning!</strong>三秒后自动跳转,若无法跳转<a href="${url!'/sell/seller/order/list'}" class="alert-link">点我</a>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
 
 <script>
 
-    setTimeout('window.location.href = "${url}"',3000);
+    setTimeout('window.location.href = "${url!'/sell/seller/order/list'}"',3000);
 
     $(document).ready(function () {
         var trigger = $('.hamburger'),

@@ -69,22 +69,5 @@ public class OrderServiceImplTest {
         Assert.assertNotEquals(PayStatusEnums.WAIT.getCode(),paid.getPayStatus());
     }
 
-    @Test
-    public void test(){
-        List<OrderDetail> orderDetails = new ArrayList<>();
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setDetailId("1");
-        orderDetail.setOrderId("23");
-        orderDetail.setProductId("222");
-        orderDetail.setProductName("dfs");
-        orderDetail.setProductPrice(5.0);
-        orderDetail.setProductQuantity(0);
-        orderDetail.setProductIcon("sdfsd");
-        orderDetail.setCreateTime(new Timestamp(new java.util.Date().getTime()));
-        orderDetail.setUpdateTime(new Timestamp(new java.util.Date().getTime()));
-        orderDetails.add(orderDetail);
-        Gson gson = new Gson();
-        String s = gson.toJson(orderDetails);
-        System.out.println(s);
-    }
+
 }
